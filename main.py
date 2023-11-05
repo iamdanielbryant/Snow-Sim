@@ -2,6 +2,8 @@ import pygame
 from screeninfo import get_monitors
 
 import snow as snowlib
+import world
+import asset
 
 #pygame setup
 pygame.init()
@@ -20,6 +22,8 @@ surface = pygame.Surface((gameWidth,gameHeight), pygame.SRCALPHA)
 
 #game objects
 snow = snowlib.Snow(surface)
+asset = asset.Sprites()
+world = world.World(gameWidth,gameHeight, asset)
 
 #gameloop
 while running:
@@ -33,7 +37,9 @@ while running:
     
 
     #render game here
+    world.renderWorld(surface)
     snow.renderSnow() 
+
 
     #pygame stuff
     screen.blit(surface,(0,0))
